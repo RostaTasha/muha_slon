@@ -4,7 +4,8 @@
 #include <string>                                                               
 #include <vector>                                                               
 #include <sstream> 
-#include <stdlib.h>  
+#include <stdlib.h> 
+#include <fcntl.h>
                                                                                 
 int main(){                                                                     
 	std::string temp;                                                         
@@ -37,7 +38,10 @@ pipe(pfd);
 close(STDIN_FILENO); //close stdin
 dup2(pfd[0],STDIN_FILENO); //redirect;
 close(pfd[0]); // close old fd
-execlp(vect[vect.size()-1].c_str(),vect[vect.size()-1].c_str(),NULL); 
+int f = open("result.out",O_RDWR,0666);
+dup2(f,STDOUT_FILENO);
+close(f); // close old fd
+execlp(vect[vect.size()-1].c_str(),vect[vect.size()-1].c_str(),NULL);
 /*for (int i =0; i< vect.size(); i++){                                             
 	pipe(fd);
 	close(stdin);

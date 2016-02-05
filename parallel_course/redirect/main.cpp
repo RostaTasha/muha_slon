@@ -52,7 +52,7 @@ for (int i =0; i< vect.size()-1; i++){
 		if (arg.size()==0)
 		    execlp(command.c_str(),command.c_str(),NULL);
 		else
-		    execlp(command.c_str(),command.c_str(),arg.c_str());
+		    execlp(command.c_str(),command.c_str(),arg.c_str(),NULL);
 	}
 }
 
@@ -69,7 +69,7 @@ close(f); // close old fd
 		if (arg.size()==0)
 		    execlp(command.c_str(),command.c_str(),NULL);
 		else
-		    execlp(command.c_str(),command.c_str(),arg.c_str());
+		    execlp(command.c_str(),command.c_str(),arg.c_str(),NULL);
 /*for (int i =0; i< vect.size(); i++){                                             
 	pipe(fd);
 	close(stdin);

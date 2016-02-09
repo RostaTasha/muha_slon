@@ -36,7 +36,8 @@ struct message{
 	char mtext[80];
 };
 
-int q_id = ftok("/tmp/msg.temp",1);
+key_t key = ftok("/tmp/msg.temp",1);
+int q_id =  msgget(key, 0666 | IPC_CREAT);
 // int msgrcv(int msgq, void * msgp, size_t mtextsize, long msgtype, int flags);
 struct message msg;
 int err = msgrcv(q_id,(void *)&msg,80,0,0);

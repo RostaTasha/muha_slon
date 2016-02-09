@@ -37,15 +37,17 @@ struct message{
 };
 
 key_t key = ftok("/tmp/msg.temp",1);
-int q_id =  msgget(key, 0666 | IPC_CREAT);
+int q_id =  msgget(key, 0666|IPC_CREAT);
 // int msgrcv(int msgq, void * msgp, size_t mtextsize, long msgtype, int flags);
 struct message msg;
-int err = msgrcv(q_id,(void *)&msg,80,0,0);
+int size = msgrcv(q_id,(void *)&msg,80,0,0);
 FILE * f = fopen("/home/box/message.txt","w");
-fwrite(msg.mtext,1,80, f);
+fwrite(msg.mtext,1,size, f);
 fclose(f);
 
-//msgctl(q_id,IPC_RMID,NULL); /*delete*/
-
+msgctl(q_id,IPC_RMID,NULL); /*delete*/
+wait(0);
+wait(0);
+return 0;
 
 }

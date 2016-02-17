@@ -24,6 +24,7 @@ pthread_spin_unlock(&spin);
   std::cout<<"started waiting rdlock"<<std::endl;
 pthread_rwlock_rdlock(&lock);
 std::cout<<"ended waiting rdlock"<<std::endl;
+pthread_rwlock_unlock(&lock);
  }
  
   void* func3(void *arg){

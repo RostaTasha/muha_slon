@@ -1,21 +1,16 @@
 ## Complexity
- * Solution 1  ~O(N^2*ln(N)) 
- * Solution 2  ~O(N^2*ln(N))
- * Solution 3  ~O(N*ln(N))
+ * Solution 1  ~O(N^2路ln(N)) 
+ * Solution 2  ~O(N^2)
+ * Solution 3  ~O(N路ln(N))
  
-	In the first case the part of the vector is sorted on each iteration. According to the documentation [link](http://en.cppreference.com/w/cpp/algorithm/sort) the compexity of sort  function is \
-O(N穕og(N)) comparisions (on average in case of standart < C++11).  In case of large N's the sum(i*log(i)) from i = 1 to N can be estimated as the corresponding integral. So, the complexity in \
-this case can be  estimated as O(N^2log(N))
+	In the first case the part of the vector is sorted on each iteration. According to the documentation [link](http://en.cppreference.com/w/cpp/algorithm/sort) the compexity of sort  function is O(N路log(N)) comparisions (on average in case of standart < C++11).  In case of large N's the sum(i路ln(i)) from i = 1 to N can be estimated as the corresponding integral. So, the complexity in this case can be  estimated as O(N^2路ln(N))
 
-	In the second case the std::partial_sort is called on every iteration of the cycle. According to the documentation [link](http://www.cplusplus.com/reference/algorithm/partial_sort/) the complexity of this function can be estimated \
-as N*log(M), where N  is the distance between first and last, M is the distance between first and middle. So, the final complexity can be estimated as the correspinding  sum (i) from i = 1 to N which results in the \
-~ O(N^2)
+	In the second case the std::partial\_sort is called on every iteration of the cycle. According to the documentation [link](http://www.cplusplus.com/reference/algorithm/partial_sort/) the complexity of this function can be estimated \
+as N路ln(M), where N  is the distance between first and last, M is the distance between first and middle. So, the final complexity can be estimated as the correspinding  sum (i) from i = 1 to N which results in the ~ O(N^2)
  
-	In the third case multiset is used. The multisets are typically implemented as binary search trees. So, the complexity of constructing multiset for unordered sequence can be estimated as \
-N*log(N). On each iteration of the algorithm erase and insert iteration are performed. The complexity of the code, which contains cycle, can be estimated similarly to the first case as the integral \
-of ln(i) which is ~ O(ln(N)*N). The final complexity is ~O(ln(N)*N).
+	In the third case multiset is used. The multisets are typically implemented as binary search trees. So, the complexity of constructing multiset for unordered sequence can be estimated as N路log(N). On each iteration of the algorithm erase and insert operations are performed. The complexity of the code, which contains cycle, can be estimated similarly to the first case as the integral of ln(i) which is ~ O(N路ln(N)). The final complexity is ~O(N路ln(N)).
 
-My solution, listed  in the file sol.cpp is based on the Kahan summation algorithm  [link](http://www.cplusplus.com/reference/algorithm/partial_sort/).\
+My solution, listed  in the file sol.cpp is based on the Kahan summation algorithm  [link](http://www.cplusplus.com/reference/algorithm/partial_sort/).
 The complexity of the proposed solution is ~O(N)
  
 ```cplusplus
